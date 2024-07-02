@@ -1,0 +1,40 @@
+{
+  "name": "testnow",
+  "version": "1.0.0",
+  "description": "Unit testing for Typescript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": "./bin/testnow",
+  "scripts": {
+    "lint": "eslint --ext .ts ts/",
+    "format": "prettier --no-editorconfig -w ts/*.ts",
+    "ts?": "tsc --noEmit --project tsconfig.json",
+    "ts": "tsc --project tsconfig.json",
+    "prepack": "tsc --project tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoubleClickPreferred/testnow.git"
+  },
+  "keywords": [
+    "unit test",
+    "simple"
+  ],
+  "author": "DoubleClickPreferred",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DoubleClickPreferred/testnow/issues"
+  },
+  "homepage": "https://github.com/DoubleClickPreferred/testnow#readme",
+  "dependencies": {
+    "ts-pattern": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "eslint": "^8.56.0",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.2"
+  }
+}

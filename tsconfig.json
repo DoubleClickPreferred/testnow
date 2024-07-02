@@ -1,0 +1,123 @@
+{
+  "include": ["ts/*.ts"],
+  "exclude": ["node_modules"],
+  // "module": "node16" implies "target": "es2022" & "esModuleInterop": true
+  // "moduleResolution": "node16" is necessary because of the "module" setting (note: "node" is an alias for "node10" and is thus wrong now)
+  // "moduleResolution": "node16" implies both "resolvePackageJsonExports": true & "resolvePackageJsonImports": true,
+  // see https://www.typescriptlang.org/docs/handbook/modules/reference.html#implied-and-enforced-options
+  "compilerOptions": {
+    // Type Checking
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+
+    // Modules
+    "allowArbitraryExtensions": false,
+    "allowImportingTsExtensions": false,
+    "allowUmdGlobalAccess": false,
+    // baseUrl unset => not recommended when not using AMD loaders ; which is my case (using ES modules or CommonJS modules)
+    // customConditions unset => only makes sense with "exports" and "imports" in package.json and I'm not using these fields
+    "module": "node16",
+    "moduleResolution": "node16",
+    // moduleSuffixes unset => I now need to add the extension in relative imports because of "type": "module" in package.json
+    "noResolve": false,
+    // paths unset => I do not need to do some remappings
+    "resolveJsonModule": false,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    // rootDir unset => I'm leaving TS determine it from my TS files
+    // rootDirs unset => I have only one source directory
+    // typeRoots unset => I do not need to restrict the types used in my project
+    // types unset => same as above
+
+    // Emit
+    "declaration": true,
+    // declarationDir unset
+    "declarationMap": false,
+    "downlevelIteration": true,
+    "emitBOM": false,
+    "emitDeclarationOnly": false,
+    "importHelpers": true,
+    "importsNotUsedAsValues": "remove",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    // mapRoot unset => I'm not generating sourceMap files (sourceMap are inlined => "inlineSourceMap": true)
+    "newLine": "lf",
+    "noEmit": false,
+    "noEmitHelpers": false,
+    "noEmitOnError": true,
+    "outDir": "dist",
+    // outFile unset => outDir is enough
+    "preserveConstEnums": true,
+    // preserveValueImports unset => deprecated
+    "removeComments": false,
+    "sourceMap": false,
+    // sourceRoot unset => I'm not generating sourceMap files (sourceMap are inlined => "inlineSourceMap": true)
+    // stripInternal unset => this is for JSDoc, which I'm not using
+
+    // JavaScript Support
+    "allowJs": false,
+    "checkJs": false,
+    // maxNodeModuleJsDepth unset => makes only sense if "allowJs": true
+
+    // Editor Support
+    // disableSizeLimit unset => I'm leaving VSCode determine whether a TS file is too big or not
+    // plugins unset => I do not want to set plugins here, only in VSCode itself
+
+    // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "preserveSymlinks": false,
+    "verbatimModuleSyntax": false,
+
+    // Language and Environment
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": false,
+    // jsx unset => not using .tsx files
+    // jsxFactory unset => not using JSX
+    // jsxFragmentFactory unset => not using JSX
+    // jsxImportSource unset => not using JSX
+    "lib": ["es2022", "dom"],
+    "moduleDetection": "auto",
+    // noLib unset => I need to set "lib"
+    // reactNamespace unset => I'm not using JSX nor React
+    "target": "es2022",
+    "useDefineForClassFields": true,
+
+    // Projects
+    "composite": false,
+    // disableReferencedProjectLoad unset => this is for the editor and I prefer to not have some configurations here that can impact it
+    // disableSolutionSearching unset => same as above
+    // disableSourceOfProjectReferenceRedirect unset => same as above
+    // same as above: I'm forcing it to false to really prevent any impact => as I am managing myself the formatting and the compilation, it is probably preferable to have VSCode start fresh every time
+    "incremental": false,
+    // tsBuildInfoFile unset => does nothing anyway because "composite": false & "incremental": false
+
+    // Output Formatting
+    "noErrorTruncation": false,
+    // preserveWatchOutput unset => internal and I have my own file watcher
+    "pretty": true,
+
+    // Completeness
+    // skipDefaultLibCheck unset => skipLibCheck should be used instead
+    "skipLibCheck": true
+  }
+}

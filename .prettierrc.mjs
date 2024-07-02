@@ -1,0 +1,32 @@
+export default {
+  arrowParens: 'always',
+  bracketSameLine: true,
+  bracketSpacing: true,
+  embeddedLanguageFormatting: 'auto',
+  endOfLine: 'lf',
+  experimentalTernaries: false,
+  htmlWhitespaceSensitivity: 'css',
+  insertPragma: false,
+  jsxSingleQuote: false,
+  printWidth: 120,
+  proseWrap: 'preserve',
+  quoteProps: 'as-needed',
+  rangeStart: 0,
+  rangeEnd: Number.POSITIVE_INFINITY,
+  requirePragma: false,
+  semi: false,
+  singleAttributePerLine: false,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'all',
+  useTabs: false,
+  vueIndentScriptAndStyle: false,
+  overrides: [
+    {
+      files: '*.ts',
+      options: {
+        parser: 'typescript',
+      },
+    },
+  ],
+}

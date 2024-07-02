@@ -1,0 +1,8 @@
+ts/
+.eslintignore
+.eslintrc.cjs
+.gitattributes
+.gitignore
+.prettierignore
+.prettierrc.mjs
+tsconfig.json
