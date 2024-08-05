@@ -22,6 +22,18 @@ npm install --save-dev @click-click/testnow
 
 ## Configuration
 
+### Type declaration of global variables
+
+Just before running your tests, **testnow** will add its *TestCallSupervisor* as a global variable **$**. You need to tell Typescript about this global variable in your declaration file like so:
+
+```typescript
+import testnow from "@click-click/testnow"
+
+declare global {
+    var $: typeof testnow.$
+}
+```
+
 ### package.json
 If Typescript outputs the JS files of your tests in **js/tests/**, set the "test" script in your package.json:
 
@@ -108,7 +120,6 @@ export function normalizePathname(pathname: string): string {
 You can define your tests in `ts/tests/pathname/normalizePathname.ts` like this:
 
 ```typescript
-import { $ } from "testnow"
 import { normalizePathname } from "../../sources/pathname"
 
 $(normalizePathname, '').equals('')
@@ -177,8 +188,10 @@ To run the tests from your own scripts, **testnow** exports 3 functions:
 For reference, here is how is coded the 'testnow' binary script (for use in your package.json *scripts*):
 
 ```typescript
-const a = require('../dist/index')
-a.executeTestCallsOfFolderByCommandLine(a.$)
+import('../dist/index.js').then((a) => {
+    global.$ = a.$
+    a.executeTestCallsOfFolderByCommandLine(a.$)
+})
 ```
 
 ## Process

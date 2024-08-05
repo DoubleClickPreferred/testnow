@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 "use strict"
 
-const a = require('../dist/index')
-a.executeTestCallsOfFolderByCommandLine(a.$)
+import('../dist/index.js').then((a) => {
+    global.$ = a.$
+    a.executeTestCallsOfFolderByCommandLine(a.$)
+})

@@ -1,6 +1,6 @@
 {
   "name": "@click-click/testnow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unit testing for Typescript",
   "type": "module",
   "source": "ts/index.ts",
