@@ -17,7 +17,7 @@ Simple unit testing for Typescript
 ## Installation
 
 ```
-npm install --save-dev testnow
+npm install --save-dev @click-click/testnow
 ```
 
 ## Configuration

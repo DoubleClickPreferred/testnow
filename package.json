@@ -1,16 +1,39 @@
 {
-  "name": "testnow",
-  "version": "1.0.0",
+  "name": "@click-click/testnow",
+  "version": "1.0.1",
   "description": "Unit testing for Typescript",
-  "main": "dist/index.js",
+  "type": "module",
+  "source": "ts/index.ts",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "types": "dist/index.d.ts",
-  "bin": "./bin/testnow",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "bin": {
+    "testnow": "bin/testnow"
+  },
+  "engines" : { 
+    "node" : ">=16.0.0"
+  },
   "scripts": {
+    "build": "rimraf dist && microbundle --target node --format modern,cjs && sh ./scripts/generate-cts.sh",
     "lint": "eslint --ext .ts ts/",
     "format": "prettier --no-editorconfig -w ts/*.ts",
     "ts?": "tsc --noEmit --project tsconfig.json",
-    "ts": "tsc --project tsconfig.json",
-    "prepack": "tsc --project tsconfig.json"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,14 +41,22 @@
   },
   "keywords": [
     "unit test",
-    "simple"
+    "simple",
+    "typescript"
+  ],
+  "files": [
+    "bin/**/*",
+    "dist/**/*",
+    "package.json",
+    "HOWTO.md",
+    "README.md"
   ],
   "author": "DoubleClickPreferred",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DoubleClickPreferred/testnow/issues"
   },
-  "homepage": "https://github.com/DoubleClickPreferred/testnow#readme",
+  "homepage": "https://doubleclickpreferred.com/tutorials/code/testnow.html",
   "dependencies": {
     "ts-pattern": "^5.2.0"
   },
@@ -34,7 +65,9 @@
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",
+    "microbundle": "^0.15.1",
     "prettier": "^3.3.2",
+    "rimraf": "^6.0.1",
     "typescript": "^5.5.2"
   }
 }

@@ -1,9 +1,6 @@
 {
   "include": ["ts/*.ts"],
   "exclude": ["node_modules"],
-  // "module": "node16" implies "target": "es2022" & "esModuleInterop": true
-  // "moduleResolution": "node16" is necessary because of the "module" setting (note: "node" is an alias for "node10" and is thus wrong now)
-  // "moduleResolution": "node16" implies both "resolvePackageJsonExports": true & "resolvePackageJsonImports": true,
   // see https://www.typescriptlang.org/docs/handbook/modules/reference.html#implied-and-enforced-options
   "compilerOptions": {
     // Type Checking
@@ -33,14 +30,14 @@
     "allowUmdGlobalAccess": false,
     // baseUrl unset => not recommended when not using AMD loaders ; which is my case (using ES modules or CommonJS modules)
     // customConditions unset => only makes sense with "exports" and "imports" in package.json and I'm not using these fields
-    "module": "node16",
-    "moduleResolution": "node16",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     // moduleSuffixes unset => I now need to add the extension in relative imports because of "type": "module" in package.json
     "noResolve": false,
     // paths unset => I do not need to do some remappings
     "resolveJsonModule": false,
-    "resolvePackageJsonExports": true,
-    "resolvePackageJsonImports": true,
+    // "resolvePackageJsonExports": true, => implied by "moduleResolution": "bundler"
+    // "resolvePackageJsonImports": true, => implied by "moduleResolution": "bundler"
     // rootDir unset => I'm leaving TS determine it from my TS files
     // rootDirs unset => I have only one source directory
     // typeRoots unset => I do not need to restrict the types used in my project
@@ -55,8 +52,8 @@
     "emitDeclarationOnly": false,
     "importHelpers": true,
     "importsNotUsedAsValues": "remove",
-    "inlineSourceMap": true,
-    "inlineSources": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
     // mapRoot unset => I'm not generating sourceMap files (sourceMap are inlined => "inlineSourceMap": true)
     "newLine": "lf",
     "noEmit": false,
@@ -99,7 +96,7 @@
     "moduleDetection": "auto",
     // noLib unset => I need to set "lib"
     // reactNamespace unset => I'm not using JSX nor React
-    "target": "es2022",
+    "target": "ESNext",
     "useDefineForClassFields": true,
 
     // Projects
